@@ -113,3 +113,31 @@ svg {
 .no-gap-bottom {
     margin-bottom: -0.75rem !important;
 }
+
+/*
+ * CSS Loader (Pengganti icon-192x192.png)
+ */
+.css-loader {
+  width: 3.5rem;  /* Menyamakan ukuran dengan icon sebelumnya */
+  height: 3.5rem; /* Menyamakan ukuran dengan icon sebelumnya */
+  border-radius: 50%;
+  
+  /* * Menggunakan variabel Bootstrap agar warna
+   * otomatis sesuai dengan light/dark mode.
+   */
+  
+  /* Warna "track" atau jalur spinner */
+  border: 5px solid var(--bs-tertiary-bg); 
+  
+  /* Warna "aktif" spinner yang berputar */
+  border-top-color: var(--bs-secondary); 
+  
+  /* Animasi berputar */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
