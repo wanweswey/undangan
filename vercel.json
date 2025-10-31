@@ -1,8 +1,4 @@
 {
-  "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
-  ],
-  "outputDirectory": ".",
   "headers": [
     {
       "source": "/assets/(.*).js",
@@ -17,4 +13,4 @@
       ]
     }
   ]
-} 
+}
