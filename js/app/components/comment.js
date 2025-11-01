@@ -333,7 +333,8 @@ export const comment = (() => {
         }
 
         if (!gifIsOpen && form.value?.trim().length === 0) {
-            util.notify('Comments cannot be empty.').warning();
+            // DIUBAH: Menggunakan floating alert
+            window.undangan.util.showFloatingAlert('Ucapan & Doa tidak boleh kosong.', 'warning');
             return;
         }
 
@@ -373,8 +374,13 @@ export const comment = (() => {
         }
 
         if (!status) {
+            // DIUBAH: Menambahkan notifikasi gagal
+            window.undangan.util.showFloatingAlert('Gagal memperbarui ucapan.', 'danger');
             return;
         }
+        
+        // DIUBAH: Menambahkan notifikasi sukses
+        window.undangan.util.showFloatingAlert('Ucapan berhasil diperbarui!', 'success');
 
         if (gifIsOpen && gifId) {
             document.getElementById(`img-gif-${id}`).src = document.getElementById(`gif-result-${id}`)?.querySelector('img').src;
@@ -426,7 +432,8 @@ export const comment = (() => {
         const nameValue = name.value;
 
         if (nameValue.length === 0) {
-            util.notify('Name cannot be empty.').warning();
+            // DIUBAH: Menggunakan floating alert
+            window.undangan.util.showFloatingAlert('Nama tidak boleh kosong.', 'warning');
 
             if (id) {
                 // scroll to form.
@@ -437,7 +444,8 @@ export const comment = (() => {
 
         const presence = document.getElementById('form-presence');
         if (!id && presence && presence.value === '0') {
-            util.notify('Please select your attendance status.').warning();
+            // DIUBAH: Menggunakan floating alert
+            window.undangan.util.showFloatingAlert('Mohon konfirmasi presensi Anda.', 'warning');
             return;
         }
 
@@ -446,7 +454,8 @@ export const comment = (() => {
         const gifCancel = gif.buttonCancel(id);
 
         if (gifIsOpen && !gifId) {
-            util.notify('Gif cannot be empty.').warning();
+            // DIUBAH: Menggunakan floating alert
+            window.undangan.util.showFloatingAlert('Silakan pilih GIF atau batalkan.', 'warning');
             return;
         }
 
@@ -456,7 +465,8 @@ export const comment = (() => {
 
         const form = document.getElementById(`form-${id ? `inner-${id}` : 'comment'}`);
         if (!gifIsOpen && form.value?.trim().length === 0) {
-            util.notify('Comments cannot be empty.').warning();
+            // DIUBAH: Menggunakan floating alert
+            window.undangan.util.showFloatingAlert('Ucapan & Doa tidak boleh kosong.', 'warning');
             return;
         }
 
@@ -517,10 +527,15 @@ export const comment = (() => {
         btn.restore();
 
         if (!response || response.code !== HTTP_STATUS_CREATED) {
+            // DIUBAH: Menambahkan notifikasi gagal
+            window.undangan.util.showFloatingAlert('Gagal mengirim ucapan, coba lagi.', 'danger');
             return;
         }
 
         owns.set(response.data.uuid, response.data.own);
+        
+        // DIUBAH: Menambahkan notifikasi sukses
+        window.undangan.util.showFloatingAlert('Ucapan & Doa berhasil terkirim!', 'success');
 
         if (form) {
             form.value = null;
